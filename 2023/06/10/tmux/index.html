@@ -21,31 +21,35 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thetechexplorer.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.16.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="介紹各種類型的硬碟格式化，以及不同的格式優缺點">
+    <meta name="description" content="Introduction to terminal tools - tmux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="硬碟格式化到底差在哪？">
-<meta property="og:url" content="https://thetechexplorer.github.io/2023/06/01/%E7%A1%AC%E7%A2%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%AD%86%E8%A8%98/index.html">
+<meta property="og:title" content="tmux">
+<meta property="og:url" content="https://thetechexplorer.github.io/2023/06/10/tmux/index.html">
 <meta property="og:site_name" content="The Tech Explorer">
-<meta property="og:description" content="介紹各種類型的硬碟格式化，以及不同的格式優缺點">
+<meta property="og:description" content="Introduction to terminal tools - tmux">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/ZC0WADJ.png">
-<meta property="article:published_time" content="2023-06-01T15:30:11.000Z">
-<meta property="article:modified_time" content="2023-06-10T09:16:37.330Z">
+<meta property="og:image" content="https://i.imgur.com/6FKhB54.png">
+<meta property="og:image" content="https://i.imgur.com/JbdV1kb.png">
+<meta property="og:image" content="https://i.imgur.com/3eEGSqP.png">
+<meta property="og:image" content="https://i.imgur.com/jX1nFyp.png">
+<meta property="og:image" content="https://i.imgur.com/SrF0lq6.png">
+<meta property="article:published_time" content="2023-06-10T09:56:39.000Z">
+<meta property="article:modified_time" content="2023-06-10T09:58:16.884Z">
 <meta property="article:author" content="Li Yu Hong">
-<meta property="article:tag" content="Technology">
-<meta property="article:tag" content="Computer">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="develop tools">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/ZC0WADJ.png">
+<meta name="twitter:image" content="https://i.imgur.com/6FKhB54.png">
 
 
-<link rel="canonical" href="https://thetechexplorer.github.io/2023/06/01/%E7%A1%AC%E7%A2%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%AD%86%E8%A8%98/">
+<link rel="canonical" href="https://thetechexplorer.github.io/2023/06/10/tmux/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thetechexplorer.github.io/2023/06/01/%E7%A1%AC%E7%A2%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%AD%86%E8%A8%98/","path":"2023/06/01/硬碟格式化筆記/","title":"硬碟格式化到底差在哪？"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thetechexplorer.github.io/2023/06/10/tmux/","path":"2023/06/10/tmux/","title":"tmux"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>硬碟格式化到底差在哪？ | The Tech Explorer</title>
+<title>tmux | The Tech Explorer</title>
   
 
 
@@ -119,7 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">什麼是格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%88%86%E9%A1%9E"><span class="nav-number">2.</span> <span class="nav-text">格式化分類</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E9%9A%8E%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">低階格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%9A%8E%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.2.</span> <span class="nav-text">高階格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAT32%E3%80%81NTFS%E3%80%81exFAT%E7%9A%84%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F%E5%B7%AE%E5%88%A5%E7%82%BA%E4%BD%95%EF%BC%8C%E8%A9%B2%E5%A6%82%E4%BD%95%E9%81%B8%E6%93%87%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">FAT32、NTFS、exFAT的檔案格式差別為何，該如何選擇？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FAT32"><span class="nav-number">3.1.</span> <span class="nav-text">FAT32</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NTFS"><span class="nav-number">3.2.</span> <span class="nav-text">NTFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exFAT"><span class="nav-number">3.3.</span> <span class="nav-text">exFAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">3.4.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tmux"><span class="nav-number">1.</span> <span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What%E2%80%99s-tmux"><span class="nav-number">1.0.1.</span> <span class="nav-text">What’s tmux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-we-need-tmux"><span class="nav-number">1.0.2.</span> <span class="nav-text">Why we need tmux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advantage-of-tmux"><span class="nav-number">1.0.3.</span> <span class="nav-text">Advantage of tmux:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session"><span class="nav-number">1.0.4.</span> <span class="nav-text">Session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux-bindkey-and-command"><span class="nav-number">1.0.5.</span> <span class="nav-text">tmux - bindkey and command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Costimize-you-tmux"><span class="nav-number">1.0.6.</span> <span class="nav-text">Costimize you tmux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux-v-s-screen"><span class="nav-number">1.0.7.</span> <span class="nav-text">tmux v.s. screen</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,7 +178,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://thetechexplorer.github.io/2023/06/01/%E7%A1%AC%E7%A2%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%AD%86%E8%A8%98/">
+    <link itemprop="mainEntityOfPage" href="https://thetechexplorer.github.io/2023/06/10/tmux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,12 +191,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="硬碟格式化到底差在哪？ | The Tech Explorer">
-      <meta itemprop="description" content="介紹各種類型的硬碟格式化，以及不同的格式優缺點">
+      <meta itemprop="name" content="tmux | The Tech Explorer">
+      <meta itemprop="description" content="Introduction to terminal tools - tmux">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          硬碟格式化到底差在哪？
+          tmux
         </h1>
 
         <div class="post-meta-container">
@@ -202,15 +206,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-06-01 23:30:11" itemprop="dateCreated datePublished" datetime="2023-06-01T23:30:11+08:00">2023-06-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-10 17:16:37" itemprop="dateModified" datetime="2023-06-10T17:16:37+08:00">2023-06-10</time>
+      <time title="Created: 2023-06-10 17:56:39 / Modified: 17:58:16" itemprop="dateCreated datePublished" datetime="2023-06-10T17:56:39+08:00">2023-06-10</time>
     </span>
 
   
@@ -227,65 +225,97 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>806</span>
+      <span>241</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>1 mins.</span>
     </span>
 </div>
 
-            <div class="post-description">介紹各種類型的硬碟格式化，以及不同的格式優缺點</div>
+            <div class="post-description">Introduction to terminal tools - tmux</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="什麼是格式化"><a href="#什麼是格式化" class="headerlink" title="什麼是格式化"></a>什麼是格式化</h2><p>格式化是對儲存裝置所選的分割區(Partition) 給予一全新空白「根目錄Root」，創建出一個『歸檔系統』，就如同規劃一本書的「目錄索引」，可以組織儲存裝置內的資料檔案，並能更有效利用儲存空間，存放更多檔案；格式化也等同於清除儲存裝置內所有格式、檔案</p>
-<h2 id="格式化分類"><a href="#格式化分類" class="headerlink" title="格式化分類"></a>格式化分類</h2><h3 id="低階格式化"><a href="#低階格式化" class="headerlink" title="低階格式化"></a>低階格式化</h3><ul>
-<li>電腦儲存檔案資料都是由二進位的「0和1」所組成。如果將USB隨身碟低階格式化，原先USB隨身碟內所儲&#x2F;home&#x2F;harry&#x2F;Desktop&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;硬碟格式化筆記.md存的資料將會被完全刪除，USB隨身碟內的資料都重置為「0」，就是原場USB的設定</li>
-<li>無法救援</li>
-<li>可以用來救援損壞 故障或無法辨識</li>
+    <div class="post-body" itemprop="articleBody"><h1 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h1><h3 id="What’s-tmux"><a href="#What’s-tmux" class="headerlink" title="What’s tmux"></a>What’s tmux</h3><ul>
+<li>A terminal multiplexer</li>
+<li>Allow open multiple tabs (multiple terminals)<br><img src="https://i.imgur.com/6FKhB54.png"></li>
 </ul>
-<h3 id="高階格式化"><a href="#高階格式化" class="headerlink" title="高階格式化"></a>高階格式化</h3><p>分為兩類，並為Window中格式化的兩個選項</p>
-<ul>
-<li>快速格式化(快)<ul>
-<li>不會檢查損壞區</li>
+<h3 id="Why-we-need-tmux"><a href="#Why-we-need-tmux" class="headerlink" title="Why we need tmux"></a>Why we need tmux</h3><ul>
+<li>Keep your working session alive</li>
+<li>tmux will not be terminated when connection is lost</li>
 </ul>
-</li>
-<li>完整格式化(慢)<ul>
-<li>會檢查損壞區</li>
+<h3 id="Advantage-of-tmux"><a href="#Advantage-of-tmux" class="headerlink" title="Advantage of tmux:"></a>Advantage of tmux:</h3><ul>
+<li>Multiple sessions, windows, panes<ul>
+<li>sessions -browser<ul>
+<li><code>tmux</code> command will open a new session</li>
 </ul>
 </li>
+<li>window -tab<ul>
+<li>One session can have multiple windows</li>
 </ul>
-<p>雖然檔案都看似清空可是仍可救援</p>
-<h2 id="FAT32、NTFS、exFAT的檔案格式差別為何，該如何選擇？"><a href="#FAT32、NTFS、exFAT的檔案格式差別為何，該如何選擇？" class="headerlink" title="FAT32、NTFS、exFAT的檔案格式差別為何，該如何選擇？"></a>FAT32、NTFS、exFAT的檔案格式差別為何，該如何選擇？</h2><p>首先，要先知道不同的讀取檔案格式，可能會影響單存取一檔案大小，空間使用效率，還有不同系統的相容性，以下速度為單次檔案讀寫速度</p>
-<h3 id="FAT32"><a href="#FAT32" class="headerlink" title="FAT32"></a>FAT32</h3><ul>
-<li>為最早期最通用的檔案格式</li>
-<li>相容性(優):通用於不同的系統（Windows, linux, MacOS）</li>
-<li>速度(慢):一次只能讀寫一個最大 4 GB檔案，分割區Partition最大分區為8TB</li>
-<li>使用:可以用於跨平台間小檔案得傳輸</li>
+</li>
+<li>pane -spit window<ul>
+<li>A window can be split into multiple panes</li>
 </ul>
-<h3 id="NTFS"><a href="#NTFS" class="headerlink" title="NTFS"></a>NTFS</h3><ul>
-<li>NTFS是在FAT32之後出現的檔案系統格式，是Windows主要使用的檔案格式</li>
-<li>相容性(差):用於所有版本的Windows，在一般情況下Mac OS只能讀取檔案，而在一些Linux發行版系統中也只能讀取</li>
-<li>速度(快):NTFS單次讀取&#x2F;寫入檔案文件容量以及傳輸速度為 16TB（理論值）</li>
-<li>使用: 主要在 Windows 上儲存高畫質影片、照片圖檔等大容量檔案需求者</li>
+</li>
 </ul>
-<h3 id="exFAT"><a href="#exFAT" class="headerlink" title="exFAT"></a>exFAT</h3><ul>
-<li>exFAT是在FAT之後開發優化快閃記憶體的檔案系統</li>
-<li>相容性(中):基本上與所有版本的Windows和現代版本的Mac OS 讀寫兼容，在Linux上需要其他軟體輔助。</li>
-<li>速度(中): exFAT在檔案文件單次讀取&#x2F;寫入容量以及傳輸速度為64ZB</li>
-<li>使用: 在Windows 和 MacOS 之間遊走的人，且需要比較好傳輸效率的人</li>
+</li>
 </ul>
-<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>如使用的作業系統是 Windows，NTFS是最理想的選擇，但如果如果要跨平作業系統的話，會考慮相容性較佳的exFAT和 FAT32，在透過使用OS和存取速度下去做選擇，因為在linux上安裝讀取exFAT需要額外安裝東西相較麻煩會建議FAT32(速度較慢)，但是如果只有用MacOS的話會建議exFAT(速度較快)</p>
-<ul>
-<li>但如果USB隨身碟要當開機碟建議可以使用FAT32，這樣對於引導系統啟動的相容性會好一些<br><img src="https://i.imgur.com/ZC0WADJ.png"></li>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><ul>
+<li>Create a new  session (open a new browser)<ul>
+<li><code>$ tmux</code></li>
+<li>Outside of tmux session</li>
 </ul>
+</li>
+<li>Detach current session<ul>
+<li><code>$ tmux detach</code></li>
+<li>Inside of tmux session</li>
+</ul>
+</li>
+<li>Attach to previous session<ul>
+<li><code>$ tmux attach</code></li>
+<li>Attach only if previous sessions exist</li>
+</ul>
+</li>
+<li>List opened sessions<ul>
+<li><code>$ tmux list-sessions</code></li>
+</ul>
+</li>
+<li>Attach to previous session by id<ul>
+<li><code>$ tmux attach -t session-id</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="tmux-bindkey-and-command"><a href="#tmux-bindkey-and-command" class="headerlink" title="tmux - bindkey and command"></a>tmux - bindkey and command</h3><ul>
+<li><p>Defualt: Ctrl + b</p>
+</li>
+<li><p>Command:<br><img src="https://i.imgur.com/JbdV1kb.png"><br><img src="https://i.imgur.com/3eEGSqP.png"></p>
+</li>
+<li><p>The common command </p>
+</li>
+<li><p>For Pane</p>
+<ol>
+<li><code>&lt;Ctrl+b&gt; + &quot;</code>：進行水平分割</li>
+<li><code>&lt;Ctrl+b&gt; + %</code>：進行垂直分割</li>
+<li><code>&lt;Ctrl+b&gt; + &lt;方向鍵&gt;</code>：移動到其他 pane</li>
+<li><code>&lt;Ctrl+b&gt; + x</code>：關閉目前的 pane<br>  <img src="https://i.imgur.com/jX1nFyp.png"></li>
+</ol>
+</li>
+<li><p>For Session<br>  1.<code>&lt;Ctrl+b&gt; + d</code>：把 session 放到背景(detach)<br>  2.<code>$ tmux at</code>：attach 到背景的 session<br>  3.<code>$ tmux attach -t &lt;number&gt;</code>: 開到指定的session<br>  4.<code>$tmux kill-session [ &lt;number&gt; ]</code>:刪除指定的session<br>  5.<code>$tmux ls</code>:展示所有的sessions</p>
+</li>
+</ul>
+<h3 id="Costimize-you-tmux"><a href="#Costimize-you-tmux" class="headerlink" title="Costimize you tmux"></a>Costimize you tmux</h3><ul>
+<li>create a config file <code>~/.tmux.conf</code></li>
+<li>Look up on Internet for more details</li>
+</ul>
+<h3 id="tmux-v-s-screen"><a href="#tmux-v-s-screen" class="headerlink" title="tmux v.s. screen"></a>tmux v.s. screen</h3><p><img src="https://i.imgur.com/SrF0lq6.png"></p>
 
     </div>
 
@@ -305,22 +335,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Technology/" rel="tag"><i class="fa fa-tag"></i> Technology</a>
-              <a href="/tags/Computer/" rel="tag"><i class="fa fa-tag"></i> Computer</a>
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+              <a href="/tags/develop-tools/" rel="tag"><i class="fa fa-tag"></i> develop tools</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/06/01/%E6%99%BA%E6%85%A7%E7%B7%9A%E4%B8%8A%E7%9B%A3%E8%80%83%E7%B3%BB%E7%B5%B1/" rel="prev" title="智慧線上監考系統 Online Exam Proctoring with AI">
-                  <i class="fa fa-chevron-left"></i> 智慧線上監考系統 Online Exam Proctoring with AI
+                <a href="/2023/06/01/3D%E6%84%9F%E6%B8%AC%E6%8A%80%E8%A1%93/" rel="prev" title="3D 視覺是如何建構的？ 讓我們來聊聊3D感測技術！">
+                  <i class="fa fa-chevron-left"></i> 3D 視覺是如何建構的？ 讓我們來聊聊3D感測技術！
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/06/01/3D%E6%84%9F%E6%B8%AC%E6%8A%80%E8%A1%93/" rel="next" title="3D 視覺是如何建構的？ 讓我們來聊聊3D感測技術！">
-                  3D 視覺是如何建構的？ 讓我們來聊聊3D感測技術！ <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
